@@ -1,0 +1,12 @@
+target/
+*.class
+*.jar
+*.war
+*.ear
+.DS_Store
+*.log
+.settings/
+.project
+.classpath
+
+# Made with Bob

@@ -1,0 +1,12 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: java-vuln-app
+  namespace: vulnerable-app-test
+  labels:
+    app: java-vuln-app
+spec:
+  lookupPolicy:
+    local: false
+
+# Made with Bob

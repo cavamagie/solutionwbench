@@ -1,0 +1,84 @@
+# A REST API Operation represents a specific HTTP endpoint and method (GET, POST, PUT, DELETE, etc.) within a REST API. Operations define the contract for how clients interact with the API, including the endpoint path, HTTP method, request/response formats, and whether the operation is provided or consumed.
+type: implementation.rest-api-operation
+# Specifies whether the REST API operation is provided (exposed by the system) or consumed (used by the system from an external source). This helps distinguish between operations that the system exposes versus operations that the system uses.
+interaction-type: providing
+relationships:
+  # technical id uniquely identifying element instance
+  - uuid: 6ac4b592-a448-42db-92f8-7dae75cad345
+    # A Triggers relationship connects a source to what it sets in motion. Domain and implementation elements may trigger a command or domain service. A command or domain service may in turn trigger related implementation elements such as a REST API, a REST API operation, or a service.
+    type: ddd.triggers
+    description: triggers
+    creator: Markus Nadolski
+    creatorId: 0b359638-8159-4d54-b58e-47a1341a7116
+    sourceHandle: right-source
+    targetHandle: left-target
+    creationTs: '1773829916367'
+    label: triggers
+    lastModifier: Markus Nadolski
+    lastModifierId: 0b359638-8159-4d54-b58e-47a1341a7116
+    lastModifiedTs: '1773829924396'
+    # Path reference of the target element, if path contains #innerElement/ then it is an inner element with provided uuid in the parent element with path before /innerElement/
+    target: /elements/ddd/domain-service/get-giftcards-for-customer
+label: Get giftcards for customer
+summary: |-
+  operationId: getGiftcardsForCustomer
+  Provides all giftcards for a customer.
+description: >-
+  The *GetGiftcardsForCustomer* operation provides all Giftcards for a
+  particular Customer.
+
+
+  ​
+
+  ​
+
+
+  #### Precondition
+
+
+  none
+
+
+
+
+  ​​
+
+
+  #### Operation logic / flow
+
+
+  * Operation calls the corresponding domain service to determine all Giftcard
+  instance for a Customer.&#x20;
+
+  * It maps the domain services output to the as response expected output schema
+  (an array of it).
+
+  * If there is no Giftcard for that customer the array shall be empty.
+
+  * The result will be responded as array schema with a 200 status code
+
+
+  ​​
+
+
+  #### Postcondition
+
+
+  * Giftcards for Customer provided
+
+  * Response contained corresponding array
+icon: CallsIncoming
+# technical id uniquely identifying element instance
+uuid: 9fa5e4fb-f84c-4e5d-bdf5-00333dfb8efd
+# k5-metadata: Id of profile where the element type was defined
+profileId: implementation-profile
+# k5-metadata: Version of profile where the element type was defined
+profileVersion: 1.0.0
+# k5-metadata: Version used for serializing k5 data to filestructure
+serializationVersion: 1.0.0
+creationTs: '1773828781108'
+creator: Markus Nadolski
+creatorId: 0b359638-8159-4d54-b58e-47a1341a7116
+lastModifiedTs: '1773829602934'
+lastModifier: Markus Nadolski
+lastModifierId: 0b359638-8159-4d54-b58e-47a1341a7116

@@ -1,0 +1,32 @@
+# This configuration is intended for development purpose, it's **your** responsibility to harden it for production
+# Usage: docker compose -f src/main/docker/local/services.yml up -d
+name: giftcardnew
+services:
+  keycloak:
+    extends:
+      file: ./keycloak.yml
+      service: keycloak
+  mongodb:
+    extends:
+      file: ./mongodb.yml
+      service: mongodb
+  mongo-express:
+    extends:
+      file: ./mongodb.yml
+      service: mongo-express
+  kafka:
+    extends:
+      file: ./kafka.yml
+      service: kafka
+  kafka-ui:
+    extends:
+      file: ./kafka.yml
+      service: kafka-ui
+
+volumes:
+  mongodb_data:
+  kafka_data:
+
+networks:
+  giftcardnew-network:
+    driver: bridge

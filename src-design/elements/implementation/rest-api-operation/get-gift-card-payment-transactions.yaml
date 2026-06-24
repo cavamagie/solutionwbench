@@ -1,0 +1,74 @@
+# A REST API Operation represents a specific HTTP endpoint and method (GET, POST, PUT, DELETE, etc.) within a REST API. Operations define the contract for how clients interact with the API, including the endpoint path, HTTP method, request/response formats, and whether the operation is provided or consumed.
+type: implementation.rest-api-operation
+relationships:
+  # technical id uniquely identifying element instance
+  - uuid: 0779dec6-6efa-4363-942e-7129a08a0e8e
+    # A Generic Relationship indicates a general relationship between two elements. This relationship is used to document connections between elements that don't fit into specific relationship types. Generic relationships are flexible and can be used to model any type of relationship between elements.
+    type: system.generic-relationship
+    description: ''
+    creator: Markus Nadolski
+    creatorId: 0b359638-8159-4d54-b58e-47a1341a7116
+    sourceHandle: right-source
+    targetHandle: left-target
+    creationTs: '1773830011752'
+    # Path reference of the target element, if path contains #innerElement/ then it is an inner element with provided uuid in the parent element with path before /innerElement/
+    target: /elements/implementation/db-collection/giftcards-db-collection
+label: Get gift card payment transactions
+summary: |-
+  operationId: getGiftcardTransactions
+  Provides the transactions for a particular gift card.
+description: >-
+  The *GetGiftcardTransactions* operation provides all Transactions for a
+  Giftcard.
+
+
+  ​
+
+  ​
+
+
+  #### Precondition
+
+
+  * Giftcard exists
+
+
+  ​​
+
+
+  #### Operation logic / flow
+
+
+  * Operation determines the Giftcard instance first; if not found the response
+  will be a 404 status code (with Error schema)
+
+  * Otherwise it retrieves the transactions from the instance and maps it to the
+  Transaction schema
+
+  * The result will be responded as array schema with a 200 status code
+
+
+  ​​
+
+
+  #### Postcondition
+
+
+  * Transactions for Giftcard provided
+
+  * Response contained corresponding schema
+icon: CallsIncoming
+# technical id uniquely identifying element instance
+uuid: 2888e1e3-2480-456b-8d82-bd86d971963c
+# k5-metadata: Id of profile where the element type was defined
+profileId: implementation-profile
+# k5-metadata: Version of profile where the element type was defined
+profileVersion: 1.0.0
+# k5-metadata: Version used for serializing k5 data to filestructure
+serializationVersion: 1.0.0
+creationTs: '1769522411129'
+creator: Markus Nadolski
+creatorId: 25541ba9-1e67-4704-9390-40c4a8e3baad
+lastModifiedTs: '1773829225785'
+lastModifier: Markus Nadolski
+lastModifierId: 0b359638-8159-4d54-b58e-47a1341a7116

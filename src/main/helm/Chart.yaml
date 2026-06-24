@@ -1,0 +1,6 @@
+apiVersion: v2
+name: @project.name@
+description: @project.description@
+type: application
+version: @chart.version@
+appVersion: "@project.version@"

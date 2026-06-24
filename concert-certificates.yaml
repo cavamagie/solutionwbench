@@ -1,0 +1,208 @@
+# Certificate Bundle for Concert Platform
+# Generated: 2026-06-17
+# Purpose: SSL/TLS certificates for secure communication
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: concert-tls-certificates
+  namespace: concert-platform
+  labels:
+    app: concert
+    component: security
+    environment: production
+type: kubernetes.io/tls
+data:
+  # Base64 encoded certificate (server.crt)
+  # Replace with actual base64 encoded certificate content
+  tls.crt: |
+    LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURYVENDQWtXZ0F3SUJBZ0lVRXhh
+    bXBsZUNlcnRpZmljYXRlRGF0YUhlcmUKLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+  
+  # Base64 encoded private key (server.key)
+  # Replace with actual base64 encoded private key content
+  tls.key: |
+    LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JSUV2UUlCQURBTkJna3Foa2lHOXcw
+    QkFRRUZBQVNDQktjd2dnU2pBZ0VBQWdFQQotLS0tLUVORCBQUklWQVRFIEtFWS0tLS0t
+
+---
+# Certificate Authority Bundle (if needed)
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: concert-ca-bundle
+  namespace: concert-platform
+  labels:
+    app: concert
+    component: security
+data:
+  ca-bundle.crt: |
+    -----BEGIN CERTIFICATE-----
+    # Root CA Certificate
+    # Replace with actual CA certificate content
+    MIIDXTCCAkWgAwIBAgIUExampleCACertificateDataHere
+    -----END CERTIFICATE-----
+
+---
+# Certificate Configuration for Concert Platform
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: concert-cert-config
+  namespace: concert-platform
+  labels:
+    app: concert
+    component: configuration
+data:
+  certificate-info.json: |
+    {
+      "issuer": {
+        "country": "IT",
+        "state": "Italy",
+        "locality": "Rome",
+        "organization": "Concert Platform",
+        "organizationalUnit": "IT Department",
+        "commonName": "concert.platform.local"
+      },
+      "subject": {
+        "country": "IT",
+        "state": "Italy",
+        "locality": "Rome",
+        "organization": "Concert Platform",
+        "organizationalUnit": "IT Department",
+        "commonName": "concert.platform.local"
+      },
+      "validity": {
+        "notBefore": "2026-06-17T00:00:00Z",
+        "notAfter": "2027-06-17T23:59:59Z"
+      },
+      "subjectAlternativeNames": [
+        "concert.platform.local",
+        "*.concert.platform.local",
+        "localhost",
+        "*.apps.example.com"
+      ],
+      "keyUsage": [
+        "digitalSignature",
+        "keyEncipherment"
+      ],
+      "extendedKeyUsage": [
+        "serverAuth",
+        "clientAuth"
+      ]
+    }
+
+---
+# Instructions for Certificate Upload
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: concert-cert-instructions
+  namespace: concert-platform
+data:
+  README.md: |
+    # Certificate Upload Instructions for Concert Platform
+    
+    ## Prerequisites
+    - Access to Concert Platform admin console
+    - kubectl CLI configured with appropriate permissions
+    - Valid SSL/TLS certificates
+    
+    ## Step 1: Generate Certificates
+    
+    If you need to generate new certificates, use the provided script:
+    
+    ```bash
+    cd app-cnc-vulne
+    ./generate-certs.sh
+    ```
+    
+    This will create:
+    - `certs/server.key` - Private key
+    - `certs/server.crt` - SSL certificate
+    - `certs/server.csr` - Certificate signing request
+    
+    ## Step 2: Encode Certificates to Base64
+    
+    ```bash
+    # Encode certificate
+    cat certs/server.crt | base64 -w 0 > cert.b64
+    
+    # Encode private key
+    cat certs/server.key | base64 -w 0 > key.b64
+    ```
+    
+    ## Step 3: Update YAML File
+    
+    Replace the placeholder base64 content in `concert-certificates.yaml`:
+    - Update `tls.crt` with content from `cert.b64`
+    - Update `tls.key` with content from `key.b64`
+    
+    ## Step 4: Apply to Concert Platform
+    
+    ```bash
+    # Create namespace if it doesn't exist
+    kubectl create namespace concert-platform --dry-run=client -o yaml | kubectl apply -f -
+    
+    # Apply certificates
+    kubectl apply -f concert-certificates.yaml
+    
+    # Verify deployment
+    kubectl get secrets -n concert-platform
+    kubectl get configmaps -n concert-platform
+    ```
+    
+    ## Step 5: Configure Concert Platform
+    
+    Update Concert Platform configuration to use the certificates:
+    
+    ```yaml
+    tls:
+      enabled: true
+      secretName: concert-tls-certificates
+      certPath: /etc/certs/tls.crt
+      keyPath: /etc/certs/tls.key
+    ```
+    
+    ## Verification
+    
+    ```bash
+    # Check certificate details
+    kubectl get secret concert-tls-certificates -n concert-platform -o jsonpath='{.data.tls\.crt}' | base64 -d | openssl x509 -text -noout
+    
+    # Test HTTPS endpoint
+    curl -k https://concert.platform.local/health
+    ```
+    
+    ## Security Notes
+    
+    ⚠️ **IMPORTANT**:
+    - Keep private keys secure and never commit them to version control
+    - Use proper certificate authorities for production environments
+    - Rotate certificates before expiration
+    - Monitor certificate expiration dates
+    - Use strong encryption algorithms (RSA 2048+ or ECC)
+    
+    ## Troubleshooting
+    
+    ### Certificate not recognized
+    - Verify base64 encoding is correct
+    - Check certificate format (PEM)
+    - Ensure no extra whitespace or line breaks
+    
+    ### Permission denied
+    - Verify kubectl permissions
+    - Check namespace access rights
+    - Confirm RBAC policies
+    
+    ### Certificate expired
+    - Generate new certificates
+    - Update the secret with new certificates
+    - Restart affected pods
+    
+    ## Support
+    
+    For issues or questions, contact the Concert Platform support team.
+
+# Made with Bob

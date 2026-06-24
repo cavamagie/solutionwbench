@@ -1,0 +1,31 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: java-vuln-app
+  namespace: vulnerable-app-test
+  labels:
+    app: java-vuln-app
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: java-vuln-app:latest
+  source:
+    type: Git
+    git:
+      uri: https://github.com/YOUR_USERNAME/YOUR_REPO.git
+      ref: main
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: Dockerfile
+  triggers:
+    - type: ConfigChange
+    - type: GitHub
+      github:
+        secret: java-vuln-app-webhook-secret
+    - type: Generic
+      generic:
+        secret: java-vuln-app-webhook-secret
+
+# Made with Bob

@@ -1,0 +1,102 @@
+spring:
+  application.name: ${APPLICATION_NAME:giftcard}
+  # Import configuration from mounted ConfigMap volume
+  # The ConfigMap is mounted at /etc/config and contains {application-name}.properties
+  config:
+    import: optional:file:/etc/config/${APPLICATION_NAME:giftcard}.properties
+  data:
+    mongodb:
+      uri: ${SPRING_DATA_MONGODB_URI:mongodb://localhost:27017/giftcard}
+      auto-index-creation: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${OAUTH2_ISSUER_URI:}
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    security:
+      protocol: ${KAFKA_SECURITY_PROTOCOL:PLAINTEXT}
+    consumer:
+      group-id: ${KAFKA_CONSUMER_GROUP_ID:giftcard-application}
+      auto-offset-reset: earliest
+    producer:
+      topic:
+        gift-card-activated: ${KAFKA_TOPIC_GIFT_CARD_ACTIVATED:gift-card-activated}
+    properties:
+      sasl:
+        mechanism: ${KAFKA_SASL_MECHANISM:}
+        jaas:
+          config: ${KAFKA_SASL_JAAS_CONFIG:}
+      ssl:
+        endpoint:
+          identification:
+            algorithm: ${KAFKA_SSL_ENDPOINT_IDENTIFICATION_ALGORITHM:https}
+
+
+giftcard:
+  kafka:
+    consumer:
+      group-id: ${KAFKA_CONSUMER_GROUP_ID:giftcard-application}
+    topics:
+      gift-card-activated: ${KAFKA_TOPIC_GIFT_CARD_ACTIVATED:gift-card-activated}
+
+# OAuth2 configuration for Swagger UI authentication
+oauth2:
+  authorization-url: ${OAUTH2_AUTHORIZATION_URL:${OAUTH2_ISSUER_URI:}/protocol/openid-connect/auth}
+  token-url: ${OAUTH2_TOKEN_URL:${OAUTH2_ISSUER_URI:}/protocol/openid-connect/token}
+  servlet:
+    multipart:
+      file-size-threshold: 1MB
+      max-file-size: 5MB
+      max-request-size: 10MB
+
+dummyjson:
+  base-url: ${DUMMYJSON_BASE_URL:https://dummyjson.com}
+
+springdoc:
+  api-docs:
+    path: /api-docs
+    enabled: true
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+    operations-sorter: method
+    tags-sorter: alpha
+    oauth:
+      client-id: ${OAUTH2_CLIENT_ID:swagger-ui-client}
+      use-pkce-with-authorization-code-grant: true
+
+server:
+  url: ${HOST}
+  port: 8443
+  ssl:
+    enabled: true
+  servlet:
+    # Context path for all endpoints (API, Swagger UI, actuator)
+    # Set via SERVER_SERVLET_CONTEXT_PATH environment variable in deployment
+    context-path: ${SERVER_SERVLET_CONTEXT_PATH:/}
+
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      group:
+        # Liveness - only check if app process is alive (don't include MongoDB)
+        liveness:
+          include: livenessState
+        # Readiness - include MongoDB to verify connection before accepting traffic
+        readiness:
+          include: readinessState, mongo
+  endpoints:
+    web:
+      exposure:
+        include: health
+
+logging.level:
+  root: INFO
+  org: WARN
+  org.springframework.data.mongodb: INFO
+  org.mongodb.driver: INFO
+  k5.giftcard: INFO

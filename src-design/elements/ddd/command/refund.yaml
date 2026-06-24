@@ -1,0 +1,129 @@
+# A Command represents an intention to perform an action or trigger a process in the domain. Commands are typically written in imperative form (e.g., 'Place Order', 'Process Payment'). They represent user actions or system triggers that lead to domain events. Commands can be factory commands used to create instances of aggregate roots.
+type: ddd.command
+# Specifies whether this command is a factory command. Factory commands are used to create instances of aggregate roots. They represent the creation operations for aggregates and are distinct from commands that modify existing aggregates.
+is-factory: false
+relationships:
+  # technical id uniquely identifying element instance
+  - uuid: 8f02f245-e1b8-4c86-adfd-644a2eaf6c59
+    # A Throws relationship indicates that a business logic element (command or domain service) throws a business error.
+    type: ddd.throws
+    description: throws
+    creator: Markus Nadolski
+    creatorId: 0b359638-8159-4d54-b58e-47a1341a7116
+    sourceHandle: right-source
+    targetHandle: left-target
+    creationTs: '1773758184664'
+    label: throws
+    lastModifier: Markus Nadolski
+    lastModifierId: 0b359638-8159-4d54-b58e-47a1341a7116
+    lastModifiedTs: '1773761587073'
+    # Path reference of the target element, if path contains #innerElement/ then it is an inner element with provided uuid in the parent element with path before /innerElement/
+    target: /elements/ddd/business-error/transaction-amount-less-refund
+  # technical id uniquely identifying element instance
+  - uuid: c452d868-67c9-4214-bee4-9bac2c632787
+    # A Throws relationship indicates that a business logic element (command or domain service) throws a business error.
+    type: ddd.throws
+    description: throws
+    creator: Markus Nadolski
+    creatorId: 0b359638-8159-4d54-b58e-47a1341a7116
+    sourceHandle: right-source
+    targetHandle: left-target
+    creationTs: '1773758249203'
+    label: throws
+    lastModifier: Markus Nadolski
+    lastModifierId: 0b359638-8159-4d54-b58e-47a1341a7116
+    lastModifiedTs: '1773761594287'
+    # Path reference of the target element, if path contains #innerElement/ then it is an inner element with provided uuid in the parent element with path before /innerElement/
+    target: /elements/ddd/business-error/transaction-not-found
+  # technical id uniquely identifying element instance
+  - uuid: 6a4b1058-9ca7-4f99-888d-b149eef24731
+    description: belongs to
+    creator: Johannes Boßle
+    creatorId: b2a034e8-5968-4693-9871-b88d93618f7d
+    sourceHandle: left-source
+    targetHandle: right-target
+    creationTs: '1759695863858'
+    interactionStyle: SYNC
+    lastModifier: Johannes Boßle
+    lastModifierId: b2a034e8-5968-4693-9871-b88d93618f7d
+    lastModifiedTs: '1759696813416'
+    # The reverse of the 'Contains' relationship. When an element contains another element, the contained element is 'contained in' the containing element. This represents the perspective from the contained element's point of view.
+    type: ddd.contains.reverse
+    # Path reference of the target element, if path contains #innerElement/ then it is an inner element with provided uuid in the parent element with path before /innerElement/
+    target: /elements/ddd/aggregate/giftcard
+label: Refund
+summary: Adds amount in case there was a return of the order
+description: >-
+  #### Description
+
+
+  Refunds a gift card redemption (partly).
+
+
+  For example necessary when for this gift card a redemption was performed and
+  the order was (partly) returned, so that the or a part of the money shall be
+  refunded.
+
+
+
+
+  #### Precondition
+
+
+  Existing gift card, redemption was processed before.
+
+
+
+
+  #### Input
+
+
+  * orderReference
+
+  * amount
+
+  * currencyCode
+
+
+
+
+  #### Command logic / flow
+
+
+  * First, the original transaction must be determined (by the orderReference) -
+  if not found a TransactionNotFound business error shall be thrown.
+
+  * Then check further whether the to be refunded amount is not greater than the
+  original transaction value - otherwise a different Business Error
+  TransactionAmountLessRefund needs to be sent.
+
+  * Create transaction for the refund and update gift card balance.
+
+
+
+
+  #### Postcondition
+
+
+  * the refund was performed and the balance adjusted
+
+  * a transaction for the refund is present
+
+  * adjusted values of gift card present in data base
+icon: Function_2
+tags:
+  - instance
+# technical id uniquely identifying element instance
+uuid: 770a96a2-31a7-4b44-ab14-9b710d3b75c8
+# k5-metadata: Id of profile where the element type was defined
+profileId: ddd-profile
+# k5-metadata: Version of profile where the element type was defined
+profileVersion: 1.0.0
+# k5-metadata: Version used for serializing k5 data to filestructure
+serializationVersion: 1.0.0
+creationTs: '1759695555700'
+creator: Johannes Boßle
+creatorId: b2a034e8-5968-4693-9871-b88d93618f7d
+lastModifiedTs: '1773820578987'
+lastModifier: Markus Nadolski
+lastModifierId: 0b359638-8159-4d54-b58e-47a1341a7116

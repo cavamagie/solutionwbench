@@ -1,0 +1,69 @@
+# A REST API Operation represents a specific HTTP endpoint and method (GET, POST, PUT, DELETE, etc.) within a REST API. Operations define the contract for how clients interact with the API, including the endpoint path, HTTP method, request/response formats, and whether the operation is provided or consumed.
+type: implementation.rest-api-operation
+# Specifies whether the REST API operation is provided (exposed by the system) or consumed (used by the system from an external source). This helps distinguish between operations that the system exposes versus operations that the system uses.
+interaction-type: providing
+relationships:
+  # technical id uniquely identifying element instance
+  - uuid: 27dc7b64-391b-40c4-89ac-4f68aeb9d998
+    # A Triggers relationship connects a source to what it sets in motion. Domain and implementation elements may trigger a command or domain service. A command or domain service may in turn trigger related implementation elements such as a REST API, a REST API operation, or a service.
+    type: ddd.triggers
+    description: triggers
+    creator: Markus Nadolski
+    creatorId: 0b359638-8159-4d54-b58e-47a1341a7116
+    sourceHandle: right-source
+    targetHandle: left-target
+    creationTs: '1773829638844'
+    label: triggers
+    lastModifier: Markus Nadolski
+    lastModifierId: 0b359638-8159-4d54-b58e-47a1341a7116
+    lastModifiedTs: '1773829673052'
+    # Path reference of the target element, if path contains #innerElement/ then it is an inner element with provided uuid in the parent element with path before /innerElement/
+    target: /elements/ddd/command/activate
+label: Create a new gift card
+summary: |+
+  operationId: CreateGiftcard
+  Creates a new gift card incl. balance, customer reference etc.
+
+description: >-
+  The *CreateGiftcard* operation takes care of creating a giftcard.
+
+
+  #### ​&#xA;​Operation logic
+
+
+  * Operation maps information of request body to input of Activate command in
+  domain layer.
+
+  * Calls the factory command.
+
+  * In error case, the reason will be mapped to the Error schema and with a 400
+  status code responded;
+
+  * Otherwise the new created instance shall get mapped to the response schema
+  and get responded with a 201 status code
+
+
+  ​​
+
+
+  #### Postcondition
+
+
+  * Giftcard instance created
+
+  * Operations response contains corresponding schema
+icon: CallsIncoming
+# technical id uniquely identifying element instance
+uuid: 1d9bf394-617a-4917-a5d6-060ed7abc23c
+# k5-metadata: Id of profile where the element type was defined
+profileId: implementation-profile
+# k5-metadata: Version of profile where the element type was defined
+profileVersion: 1.0.0
+# k5-metadata: Version used for serializing k5 data to filestructure
+serializationVersion: 1.0.0
+creationTs: '1769522483528'
+creator: Markus Nadolski
+creatorId: 25541ba9-1e67-4704-9390-40c4a8e3baad
+lastModifiedTs: '1773823084969'
+lastModifier: Markus Nadolski
+lastModifierId: 0b359638-8159-4d54-b58e-47a1341a7116

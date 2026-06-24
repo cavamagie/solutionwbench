@@ -1,0 +1,82 @@
+# A Domain Service represents a service that performs domain operations that don't naturally fit within an entity or value object. Domain services contain domain logic that operates across multiple aggregates or entities. They are stateless and represent operations that are part of the domain but don't belong to a specific entity.
+type: ddd.domain-service
+label: Get Giftcards for Customer
+summary: Domain service determines all giftcards incl. balance, id etc. for a customer.
+description: >-
+  #### Description
+
+
+  Domain services gives the basic information of all giftcards for one customer
+  back.
+
+
+  ​
+
+  ​
+
+
+  #### Input
+
+
+  * customerId
+
+
+  ​
+
+  ​
+
+
+  #### Output​
+
+
+  Array of elements with
+
+
+  * giftcardId
+
+  * balance
+
+  * currencyCode
+
+
+  ​
+
+  ​
+
+
+  #### Service logic / flow
+
+
+  * Determine all gift card instances with the as input provided customerId
+
+  * Map each found instance to the output and give all as array back (array is
+  empty if no gift cards for this customer)
+
+
+  ​
+
+  ​
+
+
+  #### Postcondition
+
+
+  * Gift cards for customerId provided
+
+
+  ​
+icon: FlowModeler
+# technical id uniquely identifying element instance
+uuid: 5e78c0b8-695d-4777-ab5c-8f7e2c51d511
+# k5-metadata: Id of profile where the element type was defined
+profileId: ddd-profile
+# k5-metadata: Version of profile where the element type was defined
+profileVersion: 1.0.0
+# k5-metadata: Version used for serializing k5 data to filestructure
+serializationVersion: 1.0.0
+creationTs: '1769521669967'
+creator: Markus Nadolski
+creatorId: 25541ba9-1e67-4704-9390-40c4a8e3baad
+lastModifiedTs: '1773820885993'
+lastModifier: Markus Nadolski
+lastModifierId: 0b359638-8159-4d54-b58e-47a1341a7116
