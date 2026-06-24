@@ -1,0 +1,19 @@
+# env:
+#   variables:
+#     secretKeyRef:
+#       - variableName: VARIABLE1
+#         secretName: k5-service1-variable1-secret
+#         secretKey: key1
+#         optional: false
+#     configMapKeyRef:
+#       - variableName: VARIABLE2
+#         configMapName: k5-service1-variable2-cm
+#         configMapKey: key2
+#         optional: false
+#     keyValue:
+#       - variableName: VARIABLE3
+#         value: myString
+#     fieldRef:
+#       - variableName: VARIABLE4
+#         apiVersion: v1
+#         fieldPath: metadata.namespace

@@ -1,0 +1,15 @@
+# A DB Collection represents a collection in a NoSQL database (such as MongoDB) that stores documents or records. Collections are the equivalent of tables in relational databases but are schema-less and can store flexible document structures. They represent the data storage structure in document-oriented databases.
+type: implementation.db-collection
+label: Giftcards DB Collection
+icon: DataCollection
+# technical id uniquely identifying element instance
+uuid: 3210c441-f5e1-42b7-8af3-c83055b945aa
+# k5-metadata: Id of profile where the element type was defined
+profileId: implementation-profile
+# k5-metadata: Version of profile where the element type was defined
+profileVersion: 1.0.0
+# k5-metadata: Version used for serializing k5 data to filestructure
+serializationVersion: 1.0.0
+creationTs: '1773829977726'
+creator: Markus Nadolski
+creatorId: 0b359638-8159-4d54-b58e-47a1341a7116

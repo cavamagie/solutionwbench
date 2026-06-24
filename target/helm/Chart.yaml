@@ -1,0 +1,6 @@
+apiVersion: v2
+name: giftcard
+description: Giftcard Service handles the creation, management, and redemption of gift cards.
+type: application
+version: 0.0.1-SNAPSHOT
+appVersion: "0.0.1-SNAPSHOT"

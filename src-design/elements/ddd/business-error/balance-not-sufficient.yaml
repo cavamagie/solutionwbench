@@ -1,0 +1,19 @@
+# A Business Error represents an error condition or exception that can occur in the domain. Business errors represent domain-level exceptions that are meaningful to the business, such as validation failures, business rule violations, or domain-specific error conditions. They help model error handling and exception scenarios in the domain.
+type: ddd.business-error
+label: Balance not sufficient
+summary: Balance not sufficient to process redemption.
+icon: IncompleteError
+# technical id uniquely identifying element instance
+uuid: 508a0911-c62e-4eb6-93ef-38f7f83f66ab
+# k5-metadata: Id of profile where the element type was defined
+profileId: ddd-profile
+# k5-metadata: Version of profile where the element type was defined
+profileVersion: 1.0.0
+# k5-metadata: Version used for serializing k5 data to filestructure
+serializationVersion: 1.0.0
+creationTs: '1773758066592'
+creator: Markus Nadolski
+creatorId: 0b359638-8159-4d54-b58e-47a1341a7116
+lastModifiedTs: '1773758123722'
+lastModifier: Markus Nadolski
+lastModifierId: 0b359638-8159-4d54-b58e-47a1341a7116

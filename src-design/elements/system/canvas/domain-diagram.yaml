@@ -1,0 +1,360 @@
+# A Canvas diagram is a free-form drawing surface that allows placing any element types and creating flexible visualizations. Canvas diagrams are ideal for general-purpose modeling, brainstorming, free-form architecture sketches, or any diagram that doesn't fit into a specific structured diagram type. Canvas diagrams support all element types including notes, basic shapes, and model elements from any profile.
+type: system.canvas
+label: Domain Diagram
+level: '0'
+summary: Domain Diagram
+description: ''
+tags: []
+# technical id uniquely identifying element instance
+uuid: a1feb226-9a2e-4dfa-9c2b-1dfe8dd78cac
+# k5-metadata: Id of profile where the element type was defined
+profileId: k5-oml-system
+# k5-metadata: Version of profile where the element type was defined
+profileVersion: 1.0.0
+# k5-metadata: Version used for serializing k5 data to filestructure
+serializationVersion: 1.0.0
+creationTs: '1759510930201'
+timestamp: 1759510930201
+creator: Johannes Boßle
+creatorId: b2a034e8-5968-4693-9871-b88d93618f7d
+lastModifiedTs: '1777389429342'
+lastModifier: Marie Innes
+lastModifierId: 008a4c2e-ab3f-43b9-986a-0777765bb761
+canvasContent:
+  nodes:
+    - id: 029c4325-a4de-4dd7-8244-aa326ba15880
+      # A Canvas diagram is a free-form drawing surface that allows placing any element types and creating flexible visualizations. Canvas diagrams are ideal for general-purpose modeling, brainstorming, free-form architecture sketches, or any diagram that doesn't fit into a specific structured diagram type. Canvas diagrams support all element types including notes, basic shapes, and model elements from any profile.
+      type: card
+      position:
+        x: -243.8091355721656
+        'y': 659.6363033786301
+      height: 175
+      width: 300
+      initialHeight: 175
+      initialWidth: 300
+      measured:
+        width: 300
+        height: 175
+      selected: false
+      dragging: false
+      zIndex: 1
+      data:
+        elementId: 80db4cea-7384-4443-9ad9-e9a8e9487700
+        baseColor: '#fcf4d6'
+    - id: a4524f1e-9c3d-4527-819f-cfda8ec50498
+      # A Canvas diagram is a free-form drawing surface that allows placing any element types and creating flexible visualizations. Canvas diagrams are ideal for general-purpose modeling, brainstorming, free-form architecture sketches, or any diagram that doesn't fit into a specific structured diagram type. Canvas diagrams support all element types including notes, basic shapes, and model elements from any profile.
+      type: expanded
+      position:
+        x: 122.9511135166274
+        'y': 256.14143101325476
+      height: 600
+      width: 1022
+      initialHeight: 175
+      initialWidth: 300
+      measured:
+        width: 1022
+        height: 600
+      selected: false
+      zIndex: 2
+      resizing: false
+      data:
+        elementId: 787a4e0a-8833-4758-a988-5f0c2a37b3c0
+    - id: b8e13630-8229-4906-96d1-3fddd0fcad58
+      # A Canvas diagram is a free-form drawing surface that allows placing any element types and creating flexible visualizations. Canvas diagrams are ideal for general-purpose modeling, brainstorming, free-form architecture sketches, or any diagram that doesn't fit into a specific structured diagram type. Canvas diagrams support all element types including notes, basic shapes, and model elements from any profile.
+      type: card
+      position:
+        x: 30.79102725745264
+        'y': 403.66666666666674
+      parentId: a4524f1e-9c3d-4527-819f-cfda8ec50498
+      extent: parent
+      data:
+        elementId: c72ca20a-c8d0-442d-ba49-e37e842e4b13
+        baseColor: '#e5f6ff'
+      height: 175
+      width: 300
+      initialHeight: 175
+      initialWidth: 300
+      measured:
+        width: 300
+        height: 175
+      selected: false
+      dragging: false
+      zIndex: 3
+    - id: e17c6242-6af6-467a-9e2e-71ca18ac437a
+      # A Canvas diagram is a free-form drawing surface that allows placing any element types and creating flexible visualizations. Canvas diagrams are ideal for general-purpose modeling, brainstorming, free-form architecture sketches, or any diagram that doesn't fit into a specific structured diagram type. Canvas diagrams support all element types including notes, basic shapes, and model elements from any profile.
+      type: card
+      position:
+        x: 363.85716401015947
+        'y': 402.33333333333326
+      parentId: a4524f1e-9c3d-4527-819f-cfda8ec50498
+      extent: parent
+      height: 175
+      width: 300
+      initialHeight: 175
+      initialWidth: 300
+      measured:
+        width: 300
+        height: 175
+      selected: false
+      dragging: false
+      zIndex: 4
+      data:
+        elementId: 51b39239-b9bf-4271-888e-411d2e7985f5
+        baseColor: '#e5f6ff'
+    - id: a0bcfef9-bbd6-4ad2-8cc9-78893850205f
+      # A Canvas diagram is a free-form drawing surface that allows placing any element types and creating flexible visualizations. Canvas diagrams are ideal for general-purpose modeling, brainstorming, free-form architecture sketches, or any diagram that doesn't fit into a specific structured diagram type. Canvas diagrams support all element types including notes, basic shapes, and model elements from any profile.
+      type: card
+      position:
+        x: 700
+        'y': 401.4637122246985
+      parentId: a4524f1e-9c3d-4527-819f-cfda8ec50498
+      extent: parent
+      height: 175
+      width: 300
+      initialHeight: 175
+      initialWidth: 300
+      measured:
+        width: 300
+        height: 175
+      selected: false
+      dragging: false
+      zIndex: 5
+      data:
+        elementId: 770a96a2-31a7-4b44-ab14-9b710d3b75c8
+        baseColor: '#e5f6ff'
+    - id: 116c934d-6e9f-46d6-9ef6-d482bf08e05a
+      # A Canvas diagram is a free-form drawing surface that allows placing any element types and creating flexible visualizations. Canvas diagrams are ideal for general-purpose modeling, brainstorming, free-form architecture sketches, or any diagram that doesn't fit into a specific structured diagram type. Canvas diagrams support all element types including notes, basic shapes, and model elements from any profile.
+      type: card
+      position:
+        x: 147.2226739557321
+        'y': 912.4943219084506
+      height: 175
+      width: 300
+      initialHeight: 175
+      initialWidth: 300
+      measured:
+        width: 300
+        height: 175
+      selected: false
+      zIndex: 8
+      dragging: false
+      data:
+        elementId: 5e78c0b8-695d-4777-ab5c-8f7e2c51d511
+        baseColor: '#edf5ff'
+    - id: 3df2e327-7ab4-40f1-b6cb-df818a25834d
+      # A Canvas diagram is a free-form drawing surface that allows placing any element types and creating flexible visualizations. Canvas diagrams are ideal for general-purpose modeling, brainstorming, free-form architecture sketches, or any diagram that doesn't fit into a specific structured diagram type. Canvas diagrams support all element types including notes, basic shapes, and model elements from any profile.
+      type: card
+      position:
+        x: 1329.820988972231
+        'y': 949.8178764608526
+      height: 175
+      width: 300
+      initialHeight: 175
+      initialWidth: 300
+      selected: false
+      measured:
+        width: 300
+        height: 175
+      zIndex: 8
+      dragging: false
+      data:
+        elementId: 508a0911-c62e-4eb6-93ef-38f7f83f66ab
+    - id: a5ec7e6a-ec9d-4417-a1a4-6fa27f739560
+      # A Canvas diagram is a free-form drawing surface that allows placing any element types and creating flexible visualizations. Canvas diagrams are ideal for general-purpose modeling, brainstorming, free-form architecture sketches, or any diagram that doesn't fit into a specific structured diagram type. Canvas diagrams support all element types including notes, basic shapes, and model elements from any profile.
+      type: card
+      position:
+        x: 1331.1543223055644
+        'y': 544.4845431275195
+      height: 175
+      width: 300
+      initialHeight: 175
+      initialWidth: 300
+      selected: false
+      measured:
+        width: 300
+        height: 175
+      zIndex: 9
+      dragging: false
+      data:
+        elementId: 40e2cf66-4964-49bf-98ce-672c334eb856
+    - id: bae2a87b-31f3-4019-934d-a27aeec9357c
+      # A Canvas diagram is a free-form drawing surface that allows placing any element types and creating flexible visualizations. Canvas diagrams are ideal for general-purpose modeling, brainstorming, free-form architecture sketches, or any diagram that doesn't fit into a specific structured diagram type. Canvas diagrams support all element types including notes, basic shapes, and model elements from any profile.
+      type: card
+      position:
+        x: 1331.154322305564
+        'y': 749.817876460853
+      height: 175
+      width: 300
+      initialHeight: 175
+      initialWidth: 300
+      selected: false
+      measured:
+        width: 300
+        height: 175
+      dragging: false
+      zIndex: 10
+      data:
+        elementId: 1467948e-fb89-424c-b25d-bfb141646ae4
+    - id: 397c9c63-6052-49e1-b350-3a9e93da33b6
+      # A Canvas diagram is a free-form drawing surface that allows placing any element types and creating flexible visualizations. Canvas diagrams are ideal for general-purpose modeling, brainstorming, free-form architecture sketches, or any diagram that doesn't fit into a specific structured diagram type. Canvas diagrams support all element types including notes, basic shapes, and model elements from any profile.
+      type: card
+      position:
+        x: 475.761479348727
+        'y': 178.68133538730353
+      parentId: a4524f1e-9c3d-4527-819f-cfda8ec50498
+      extent: parent
+      height: 175
+      width: 300
+      initialHeight: 175
+      initialWidth: 300
+      selected: false
+      measured:
+        width: 300
+        height: 175
+      dragging: false
+      zIndex: 6
+      data:
+        elementId: 525c4055-1c48-412c-8cb1-c6620def9466
+    - id: 583d108a-21f4-4b24-acc3-008c2f05eb83
+      # A Canvas diagram is a free-form drawing surface that allows placing any element types and creating flexible visualizations. Canvas diagrams are ideal for general-purpose modeling, brainstorming, free-form architecture sketches, or any diagram that doesn't fit into a specific structured diagram type. Canvas diagrams support all element types including notes, basic shapes, and model elements from any profile.
+      type: card
+      position:
+        x: 33.111734016478465
+        'y': 100.89410128831418
+      parentId: a4524f1e-9c3d-4527-819f-cfda8ec50498
+      extent: parent
+      height: 175
+      width: 300
+      initialHeight: 175
+      initialWidth: 300
+      selected: false
+      measured:
+        width: 300
+        height: 175
+      dragging: false
+      zIndex: 7
+      selectable: true
+      data:
+        elementId: 40db5d42-f0aa-4d19-9104-6e707e5c124a
+  edges:
+    - zIndex: 3001
+      style:
+        '--xy-edge-stroke': '#000000'
+        color: '#000000'
+        strokeWidth: 1
+        strokeDasharray: 2
+      labelStyle:
+        fontSize: 1rem
+      markerEnd: simple_arrow
+      source: a0bcfef9-bbd6-4ad2-8cc9-78893850205f
+      sourceHandle: right-source
+      # Path reference of the target element, if path contains #innerElement/ then it is an inner element with provided uuid in the parent element with path before /innerElement/
+      target: a5ec7e6a-ec9d-4417-a1a4-6fa27f739560
+      targetHandle: left-target
+      id: >-
+        xy-edge__a0bcfef9-bbd6-4ad2-8cc9-78893850205fright-source-a5ec7e6a-ec9d-4417-a1a4-6fa27f739560left-target
+      # A Canvas diagram is a free-form drawing surface that allows placing any element types and creating flexible visualizations. Canvas diagrams are ideal for general-purpose modeling, brainstorming, free-form architecture sketches, or any diagram that doesn't fit into a specific structured diagram type. Canvas diagrams support all element types including notes, basic shapes, and model elements from any profile.
+      type: omlEdge
+      selected: false
+      label: throws
+      data:
+        relationshipId: 8f02f245-e1b8-4c86-adfd-644a2eaf6c59
+    - zIndex: 3001
+      style:
+        '--xy-edge-stroke': '#000000'
+        color: '#000000'
+        strokeWidth: 1
+        strokeDasharray: 2
+      labelStyle:
+        fontSize: 1rem
+      markerEnd: simple_arrow
+      source: a0bcfef9-bbd6-4ad2-8cc9-78893850205f
+      sourceHandle: right-source
+      # Path reference of the target element, if path contains #innerElement/ then it is an inner element with provided uuid in the parent element with path before /innerElement/
+      target: bae2a87b-31f3-4019-934d-a27aeec9357c
+      targetHandle: left-target
+      id: >-
+        xy-edge__a0bcfef9-bbd6-4ad2-8cc9-78893850205fright-source-bae2a87b-31f3-4019-934d-a27aeec9357cleft-target
+      # A Canvas diagram is a free-form drawing surface that allows placing any element types and creating flexible visualizations. Canvas diagrams are ideal for general-purpose modeling, brainstorming, free-form architecture sketches, or any diagram that doesn't fit into a specific structured diagram type. Canvas diagrams support all element types including notes, basic shapes, and model elements from any profile.
+      type: omlEdge
+      selected: false
+      label: throws
+      data:
+        relationshipId: c452d868-67c9-4214-bee4-9bac2c632787
+    - zIndex: 101
+      style:
+        '--xy-edge-stroke': '#000000'
+        color: '#000000'
+        strokeWidth: 1
+        strokeDasharray: 2
+      labelStyle:
+        fontSize: 1rem
+      markerEnd: simple_arrow
+      source: b8e13630-8229-4906-96d1-3fddd0fcad58
+      sourceHandle: left-source
+      # Path reference of the target element, if path contains #innerElement/ then it is an inner element with provided uuid in the parent element with path before /innerElement/
+      target: 029c4325-a4de-4dd7-8244-aa326ba15880
+      targetHandle: right-target
+      # A Canvas diagram is a free-form drawing surface that allows placing any element types and creating flexible visualizations. Canvas diagrams are ideal for general-purpose modeling, brainstorming, free-form architecture sketches, or any diagram that doesn't fit into a specific structured diagram type. Canvas diagrams support all element types including notes, basic shapes, and model elements from any profile.
+      type: omlEdge
+      selected: false
+      label: sends
+      id: >-
+        xy-edge__b8e13630-8229-4906-96d1-3fddd0fcad58left-source-029c4325-a4de-4dd7-8244-aa326ba15880right-target
+      data:
+        relationshipId: a602381c-e397-4f98-8237-3024a8c57e25
+    - zIndex: 3001
+      style:
+        '--xy-edge-stroke': '#000000'
+        color: '#000000'
+        strokeWidth: 1
+        strokeDasharray: 2
+      labelStyle:
+        fontSize: 1rem
+      markerEnd: simple_arrow
+      source: e17c6242-6af6-467a-9e2e-71ca18ac437a
+      sourceHandle: bottom-source
+      # Path reference of the target element, if path contains #innerElement/ then it is an inner element with provided uuid in the parent element with path before /innerElement/
+      target: 3df2e327-7ab4-40f1-b6cb-df818a25834d
+      targetHandle: left-target
+      # A Canvas diagram is a free-form drawing surface that allows placing any element types and creating flexible visualizations. Canvas diagrams are ideal for general-purpose modeling, brainstorming, free-form architecture sketches, or any diagram that doesn't fit into a specific structured diagram type. Canvas diagrams support all element types including notes, basic shapes, and model elements from any profile.
+      type: omlEdge
+      selected: false
+      label: throws
+      data:
+        relationshipId: b41141ad-2575-4afd-9a60-4974104dad95
+      id: >-
+        xy-edge__e17c6242-6af6-467a-9e2e-71ca18ac437abottom-source-3df2e327-7ab4-40f1-b6cb-df818a25834dleft-target
+    - zIndex: 3001
+      style:
+        '--xy-edge-stroke': '#000000'
+        color: '#000000'
+        strokeWidth: 1
+        strokeDasharray: 5.5
+      labelStyle:
+        fontSize: 1rem
+      markerEnd: arrow
+      source: 583d108a-21f4-4b24-acc3-008c2f05eb83
+      sourceHandle: right-source
+      # Path reference of the target element, if path contains #innerElement/ then it is an inner element with provided uuid in the parent element with path before /innerElement/
+      target: 397c9c63-6052-49e1-b350-3a9e93da33b6
+      targetHandle: left-target
+      id: >-
+        xy-edge__583d108a-21f4-4b24-acc3-008c2f05eb83right-source-397c9c63-6052-49e1-b350-3a9e93da33b6left-target
+      # A Canvas diagram is a free-form drawing surface that allows placing any element types and creating flexible visualizations. Canvas diagrams are ideal for general-purpose modeling, brainstorming, free-form architecture sketches, or any diagram that doesn't fit into a specific structured diagram type. Canvas diagrams support all element types including notes, basic shapes, and model elements from any profile.
+      type: omlEdge
+      data:
+        relationshipId: 58b20710-72ec-41cb-8936-8db15304cede
+      selected: false
+  nodeOrder:
+    - 029c4325-a4de-4dd7-8244-aa326ba15880
+    - a4524f1e-9c3d-4527-819f-cfda8ec50498
+    - b8e13630-8229-4906-96d1-3fddd0fcad58
+    - e17c6242-6af6-467a-9e2e-71ca18ac437a
+    - a0bcfef9-bbd6-4ad2-8cc9-78893850205f
+    - 116c934d-6e9f-46d6-9ef6-d482bf08e05a
+    - 3df2e327-7ab4-40f1-b6cb-df818a25834d
+    - a5ec7e6a-ec9d-4417-a1a4-6fa27f739560
+    - bae2a87b-31f3-4019-934d-a27aeec9357c
+    - 397c9c63-6052-49e1-b350-3a9e93da33b6
+    - 583d108a-21f4-4b24-acc3-008c2f05eb83

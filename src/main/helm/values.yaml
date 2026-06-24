@@ -1,0 +1,238 @@
+# Default values
+# This file contains all configurable values for deploying the application
+
+# Container image configuration
+image:
+  # Docker image repository where the application image is stored
+  # Example: "registry.example.com/myorg/archteype" or "docker.io/myorg/archteype"
+  repository: ""  # Override with your application image repository
+  # Image tag/version to deploy. If empty, defaults to Chart appVersion
+  # Example: "1.0.0", "latest", or "v1.2.3"
+  tag: ""
+
+# List of image pull secrets for private registries
+# Example: [{"name": "regcred"}]
+imagePullSecrets: []
+
+# Override the default name used for resources (deployment, service, etc.)
+# By default, Helm combines release name and chart name: {release-name}-{chart-name}
+# If chart name is contained in release name, only release name is used
+# Example: If release="archetype" and chart="archteype", you get "archetype-archteype"
+# Set this to override the chart name portion (e.g., "archetype" to match your release name)
+# If set, resources will be named: {release-name}-{nameOverride}
+nameOverride: ""
+
+# Override the fully qualified name used for resources
+# If set, resources will be named exactly as specified (ignores nameOverride and chart name)
+# Example: Set to "myapp" to get resources named "myapp", "myapp-service", etc.
+# This completely overrides the default naming logic
+fullnameOverride: ""
+
+# Kubernetes service account configuration
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+# Annotations to add to all pods
+# Example: {"prometheus.io/scrape": "true", "prometheus.io/port": "8080"}
+podAnnotations: {}
+
+# Pod-level security context settings applied to all containers
+# Controls permissions and security policies at the pod level
+podSecurityContext: {}
+  # fsGroup: 2000  # File system group ID for volume ownership
+
+# Container-level security context settings
+# Controls security policies for individual containers
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL  # Drop all Linux capabilities for enhanced security
+  # readOnlyRootFilesystem: true  # Mount root filesystem as read-only
+  # runAsNonRoot: true  # Ensure container runs as non-root user
+  # runAsUser: 1000  # Run container as specific user ID
+
+# Number of pod replicas to deploy
+# Increase for high availability and load distribution
+replicaCount: 1
+# Resource limits and requests for containers
+# Limits: Maximum resources a container can use (hard cap)
+# Requests: Minimum resources guaranteed to a container (used for scheduling)
+resources:
+  limits:
+    cpu: 1000m  # 1 CPU core maximum (1000 millicores)
+    memory: 1Gi  # 1 Gibibyte maximum
+  requests:
+    cpu: 500m  # 0.5 CPU core guaranteed
+    memory: 512Mi  # 512 Mebibytes guaranteed
+
+# Horizontal Pod Autoscaler (HPA) configuration
+# Automatically scales the number of pods based on CPU/memory usage
+autoscaling:
+  enabled: false  # Set to true to enable automatic scaling
+  minReplicas: 1  # Minimum number of pod replicas (must be >= 1)
+  maxReplicas: 5  # Maximum number of pod replicas
+  targetCPUUtilizationPercentage: 80  # Target average CPU utilization (0-100)
+  targetMemoryUtilizationPercentage: 80  # Target average memory utilization (0-100)
+
+# Pod Disruption Budget (PDB) configuration
+# Ensures minimum availability during voluntary disruptions (updates, node maintenance)
+podDisruptionBudget:
+  enabled: false  # Set to true to enable PDB
+  minAvailable: 1  # Minimum number of pods that must be available
+  # maxUnavailable: 1  # Alternative: maximum number of pods that can be unavailable
+
+## Startup Probe Configuration
+# Checks if the application has started successfully
+# Kubernetes waits for this probe to succeed before marking the pod as ready
+startupProbe:
+  periodSeconds: 10  # How often to perform the probe (in seconds)
+  timeoutSeconds: 5  # Number of seconds after which the probe times out
+  failureThreshold: 30  # Number of consecutive failures before restarting the container
+
+## Readiness Probe Configuration
+# Checks if the application is ready to accept traffic
+# Pods that fail readiness checks are removed from service endpoints
+readinessProbe:
+  timeoutSeconds: 2  # Number of seconds after which the probe times out
+  periodSeconds: 10  # How often to perform the probe (in seconds)
+
+## Liveness Probe Configuration
+# Checks if the application is still running
+# Containers that fail liveness checks are restarted
+livenessProbe:
+  timeoutSeconds: 5  # Number of seconds after which the probe times out
+  periodSeconds: 10  # How often to perform the probe (in seconds)
+
+## Service Configuration
+# Additional service-level settings
+services:
+  # Self-signed certificate configuration for services
+  # Requires cert-manager to be installed in the cluster
+  certification:
+    selfSigned:
+      issuerName: k5-cert-issuer  # Name of the cert-manager Issuer for certificates
+      caIssuerName: k5-ca-issuer  # Name of the cert-manager Issuer for CA certificates
+
+# Network configuration for the application
+network:
+  ssl:
+    enabled: true  # Enable SSL/TLS for the application
+  # The fully qualified hostname with protocol and port
+  # Used by the application to generate absolute URLs
+  host: "http://localhost:8080"
+
+# Kubernetes Ingress configuration
+# Provides external HTTP/HTTPS access to services within the cluster
+ingress:
+  enabled: false  # Set to true to create an Ingress resource
+  className: "nginx"  # Ingress class name (e.g., "nginx", "traefik", "istio")
+  annotations:
+    kubernetes.io/ingress.class: nginx  # Legacy annotation for ingress class
+    # kubernetes.io/tls-acme: "true"  # Enable automatic TLS certificate management with cert-manager
+  hosts:
+    - host: app.local  # Override with your application hostname (e.g., "myapp.example.com")
+      paths:
+        - path: /  # URL path to route
+          pathType: Prefix  # Path matching type: Exact, Prefix, or ImplementationSpecific
+  tls: []  # TLS configuration for HTTPS
+  #  - secretName: app-tls  # Name of the secret containing TLS certificate
+  #    hosts:
+  #      - app.local  # List of hostnames covered by this certificate
+
+# OpenShift Route configuration
+# Routes provide external HTTP/HTTPS access in OpenShift clusters
+# Similar to Ingress but specific to OpenShift/OKD
+route:
+  enabled: true  # Set to true to create an OpenShift Route resource
+  annotations:
+    # HTTP Strict Transport Security (HSTS) header configuration
+    haproxy.router.openshift.io/hsts_header: max-age=31536000;includeSubDomains;preload
+    # Enable rate limiting for connections
+    haproxy.router.openshift.io/rate-limit-connections: "true"
+    # Maximum concurrent TCP connections per route
+    haproxy.router.openshift.io/rate-limit-connections.concurrent-tcp: "50"
+  host: ""  # Route hostname (e.g., "myapp.example.com"). If empty, OpenShift will generate one
+  path: ""  # Route path (e.g., "/myapp")
+  tls:
+    enabled: true  # Enable TLS termination on the route
+    termination: reencrypt  # TLS termination type: edge, passthrough, or reencrypt
+    insecureEdgeTerminationPolicy: Redirect  # Policy for insecure HTTP: Allow, Redirect, or None
+    # certificate: ""  # TLS certificate (PEM format) for custom certificates
+    # key: ""  # TLS private key (PEM format) for custom certificates
+    # caCertificate: ""  # CA certificate (PEM format) for reencrypt termination
+
+# Application log level
+# Controls the verbosity of application logging
+# Valid values: TRACE, DEBUG, INFO, WARN, ERROR
+logLevel: "INFO"
+
+# ConfigMap configuration
+# These values are mounted as configuration files in the application container
+configmap:
+  # Spring Boot application properties
+  # These properties are applied to the Spring application context
+  spring: |
+    # Spring max size of multi part files
+    spring.servlet.multipart.max-file-size=5MB
+    spring.servlet.multipart.max-request-size=10MB
+    spring.servlet.multipart.file-size-threshold=1MB
+    {{- if not .Values.bindings.kafka.bootstrapServers }}
+    # Disable Kafka auto-configuration when bootstrap servers are not provided
+    spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.kafka.KafkaAutoConfiguration
+    {{- end }}
+  # Logging configuration
+  # Controls log levels for different packages and the root logger
+  logging: |
+    logging.level.root={{ default "INFO" .Values.logLevel | quote }}
+    logging.level.org=WARN
+  # Additional Spring Boot configuration
+  # Add any extra application.properties here
+  extraConfiguration: |
+    # Optional additional configuration
+    # server.tomcat.min-spare-threads=10 # Minimum amount of worker threads.
+    # server.http2.enabled=false # Whether to enable HTTP/2 support, if the current environment supports it.
+    springdoc.swagger-ui.title={{ include "application.fullname" . }}
+# Environment variables to inject into containers
+# These are set directly as environment variables in the pod
+env:
+  # - name: CUSTOM_VAR  # Environment variable name
+  #   value: "custom-value"  # Environment variable value
+
+# Environment variables loaded from Kubernetes secrets
+# Maps secret keys to environment variables
+envFromSecrets: []
+  # - name: my-secret  # Name of the Kubernetes secret
+  #   keys:  # List of keys from the secret to expose as environment variables
+  #     - key1  # Secret key name (becomes environment variable name)
+  #     - key2
+
+# Bindings for sensitive data stored in Kubernetes secrets
+# These values reference secrets that contain sensitive configuration
+bindings:
+  # OAuth2/OIDC authentication configuration
+  oauth2:
+    issuerUri: ""  # OAuth2 issuer URI (e.g., "https://keycloak.example.com/realms/myrealm")
+    clientId: ""  # OAuth2 client ID for authentication
+  mongodb:
+    uri: ""  # MongoDB connection URI (e.g., "mongodb://user:pass@mongodb:27017/template")
+    database: "template"  # MongoDB database name
+  # Apache Kafka configuration
+  kafka:
+    secretName: ""  # Name of Kubernetes secret containing Kafka credentials (e.g., "k5-default-message-service-binding")
+    bootstrapServers: ""  # Kafka bootstrap servers - set via KAFKA_BOOTSTRAP_SERVERS CI/CD variable
+    saslMechanism: "SCRAM-SHA-512"  # SASL mechanism (e.g., "SCRAM-SHA-512", "PLAIN")
+    saslUsername: ""  # Kafka SASL username - set via KAFKA_USER CI/CD variable
+    saslPassword: ""  # Kafka SASL password - set via KAFKA_PASSWORD CI/CD variable
+    consumerGroupId: ""  # Kafka consumer group ID for this application
+  # External API integration configuration
+  dummyjson:
+    baseUrl: "https://dummyjson.com"  # Base URL for the DummyJSON API service
+
+# JVM options and arguments
+# Additional Java Virtual Machine options passed to the application
+# Example: ["-Xmx512m", "-XX:+UseG1GC", "-Djava.security.egd=file:/dev/./urandom"]
+javaOptions: ["-Xdebug -agentlib:jdwp=transport=dt_socket,address=0.0.0.0:5005,server=y,suspend=n"]

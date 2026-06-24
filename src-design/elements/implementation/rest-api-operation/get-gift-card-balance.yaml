@@ -1,0 +1,65 @@
+# A REST API Operation represents a specific HTTP endpoint and method (GET, POST, PUT, DELETE, etc.) within a REST API. Operations define the contract for how clients interact with the API, including the endpoint path, HTTP method, request/response formats, and whether the operation is provided or consumed.
+type: implementation.rest-api-operation
+# Specifies whether the REST API operation is provided (exposed by the system) or consumed (used by the system from an external source). This helps distinguish between operations that the system exposes versus operations that the system uses.
+interaction-type: providing
+relationships:
+  # technical id uniquely identifying element instance
+  - uuid: fd584081-1d4e-4bae-9f2b-8a5795e4e9b6
+    # A Generic Relationship indicates a general relationship between two elements. This relationship is used to document connections between elements that don't fit into specific relationship types. Generic relationships are flexible and can be used to model any type of relationship between elements.
+    type: system.generic-relationship
+    description: ''
+    creator: Markus Nadolski
+    creatorId: 0b359638-8159-4d54-b58e-47a1341a7116
+    sourceHandle: right-source
+    targetHandle: left-target
+    creationTs: '1773830008798'
+    # Path reference of the target element, if path contains #innerElement/ then it is an inner element with provided uuid in the parent element with path before /innerElement/
+    target: /elements/implementation/db-collection/giftcards-db-collection
+label: Get gift card balance
+summary: |-
+  operationId: getGiftcardBalance
+  Provides the balance for particular gift card.
+description: >-
+  The *GetGiftcardBalance* operation provides the balance for a particular
+  giftcard instance.
+
+
+  ​
+
+  ​​
+
+
+  #### Operation logic / flow
+
+
+  * Operation determines the Giftcard instance by the as path parameter provided
+  id
+
+  * If not found, a 404 error shall be responded
+
+  * Otherwise, the found entity instance shall get mapped to the to be reponded
+  schema and answered with a 200 status code
+
+
+  ​​
+
+
+  #### Postcondition
+
+
+  * Balance for Giftcard retrieved.
+icon: CallsIncoming
+# technical id uniquely identifying element instance
+uuid: 618f151b-0837-4cc3-b085-0f37d4995ab5
+# k5-metadata: Id of profile where the element type was defined
+profileId: implementation-profile
+# k5-metadata: Version of profile where the element type was defined
+profileVersion: 1.0.0
+# k5-metadata: Version used for serializing k5 data to filestructure
+serializationVersion: 1.0.0
+creationTs: '1769522389707'
+creator: Markus Nadolski
+creatorId: 25541ba9-1e67-4704-9390-40c4a8e3baad
+lastModifiedTs: '1773828698024'
+lastModifier: Markus Nadolski
+lastModifierId: 0b359638-8159-4d54-b58e-47a1341a7116
